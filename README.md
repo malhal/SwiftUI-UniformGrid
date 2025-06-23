@@ -45,7 +45,7 @@ struct ContentView: View {
 You can add this package via Swift Package Manager:
 
 ```swift
-.package(url: "https://github.com/yourusername/SwiftUI-UniformGrid.git", from: "1.0.0")
+.package(url: "https://github.com/malhal/SwiftUI-UniformGrid.git", from: "1.0.0")
 ```
 
 ## License
