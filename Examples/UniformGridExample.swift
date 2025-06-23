@@ -2,19 +2,19 @@ import SwiftUI
 import UniformGrid
 
 struct UniformGridExample: View {
-    let items = Array(1...50).map { "Item \($0)" }
 
     var body: some View {
         ScrollView {
-            UniformGridLayout(spacing: 10) {
-                ForEach(items, id: \.self) { item in
-                    Text(item)
-                        .padding()
-                        .background(Color.green.opacity(0.3))
-                        .cornerRadius(6)
+            UniformGridLayout(spacing: 8) {
+                ForEach(0..<20) { i in
+                    ZStack {
+                        Color.blue.opacity(0.2)
+                            .cornerRadius(8)
+                        Text("Item \(i)")
+                            .padding()
+                    }
                 }
             }
-            .padding()
         }
     }
 }
