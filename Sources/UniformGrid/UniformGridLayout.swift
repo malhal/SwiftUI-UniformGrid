@@ -4,9 +4,9 @@ import SwiftUI
 /// All cells have equal width and height based on the largest cell.
 /// Cells flow onto the next line with configurable spacing.
 public struct UniformGridLayout: Layout {
-    public var spacing: CGFloat = 12
+    public var spacing: CGFloat
 
-    public init(spacing: CGFloat = 12) {
+    public init(spacing: CGFloat = 8) {
         self.spacing = spacing
     }
 
