@@ -21,7 +21,7 @@ struct UniformGridExample: View {
 
     var body: some View {
         ScrollView {
-            UniformGridLayout(spacing: 8) {
+            UniformGridLayout(spacing: 8) { // spacing is the vertical gap between cells
                 ForEach(0..<20) { i in
                     ZStack {
                         Color.blue.opacity(0.2)
@@ -31,6 +31,7 @@ struct UniformGridExample: View {
                     }
                 }
             }
+            .padding(.horizontal, 8) // leading and trailing edge padding
         }
     }
 }
