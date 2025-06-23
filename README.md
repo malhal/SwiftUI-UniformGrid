@@ -35,6 +35,11 @@ struct ContentView: View {
 }
 ```
 
+<img width="761" alt="Screenshot 2025-06-23 at 11 46 21" src="https://github.com/user-attachments/assets/2d4498ea-dd6c-4135-8f93-625dc25e32c2" />
+<img width="764" alt="Screenshot 2025-06-23 at 11 46 36" src="https://github.com/user-attachments/assets/848b8b59-9820-458c-8d68-494fba086261" />
+
+
+
 ## Installation
 
 You can add this package via Swift Package Manager:
