@@ -14,10 +14,11 @@ Cells flow onto the next line, widths and heights match the largest cell, and sp
 ## Usage
 
 ```swift
-import UniformGrid
 import SwiftUI
+import UniformGrid
 
-struct ContentView: View {
+struct UniformGridExample: View {
+
     var body: some View {
         ScrollView {
             UniformGridLayout(spacing: 8) {
@@ -25,7 +26,7 @@ struct ContentView: View {
                     ZStack {
                         Color.blue.opacity(0.2)
                             .cornerRadius(8)
-                        Text("Item \(i)")
+                        Text("Item \(i)") // if this string is long it will wrap and all cells will have the same height
                             .padding()
                     }
                 }
