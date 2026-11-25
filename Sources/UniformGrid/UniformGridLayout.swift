@@ -4,10 +4,19 @@ import SwiftUI
 /// All cells have equal width and height based on the largest cell.
 /// Cells flow onto the next line with configurable spacing.
 public struct UniformGridLayout: Layout {
+    /// The narrowest a cell can be. As many columns as fit at this width are used,
+    /// and text in the cells wraps to the resulting cell width.
+    public var minimumCellWidth: CGFloat
     public var spacing: CGFloat
 
-    public init(spacing: CGFloat = 8) {
+    public init(minimumCellWidth: CGFloat = 160, spacing: CGFloat = 8) {
+        self.minimumCellWidth = minimumCellWidth
         self.spacing = spacing
+    }
+
+    /// The number of columns that fit in `width` without any cell being narrower than `minimumCellWidth`.
+    private func columnCount(for width: CGFloat, subviewCount: Int) -> Int {
+        max(1, min(Int((width + spacing) / (minimumCellWidth + spacing)), subviewCount))
     }
 
     public func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
@@ -15,8 +24,7 @@ public struct UniformGridLayout: Layout {
             return .zero
         }
 
-        let idealWidth = subviews.map { $0.sizeThatFits(.unspecified).width }.max() ?? 0
-        let columns = max(1, min(Int((availableWidth + spacing) / (idealWidth + spacing)), subviews.count))
+        let columns = columnCount(for: availableWidth, subviewCount: subviews.count)
 
         let totalSpacingWidth = CGFloat(columns - 1) * spacing
         let cellWidth = (availableWidth - totalSpacingWidth) / CGFloat(columns)
@@ -36,8 +44,7 @@ public struct UniformGridLayout: Layout {
         guard !subviews.isEmpty else { return }
 
         let availableWidth = bounds.width
-        let idealWidth = subviews.map { $0.sizeThatFits(.unspecified).width }.max() ?? 0
-        let columns = max(1, min(Int((availableWidth + spacing) / (idealWidth + spacing)), subviews.count))
+        let columns = columnCount(for: availableWidth, subviewCount: subviews.count)
 
         let totalSpacingWidth = CGFloat(columns - 1) * spacing
         let cellWidth = (availableWidth - totalSpacingWidth) / CGFloat(columns)
